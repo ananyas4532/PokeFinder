@@ -7,7 +7,7 @@ function Home() {
     useEffect(() => {
         async function fetchPokemon() {
             const res = await fetch(
-                "https://pokeapi.co/api/v2/pokemon?limit=12"
+                "https://pokeapi.co/api/v2/pokemon?limit=50"
             );
             const data = await res.json();
 
