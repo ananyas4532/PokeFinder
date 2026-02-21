@@ -10,7 +10,8 @@ function App() {
   return (
     <>
       <div>
-        <h1 className='title'>Pokemon Pokefinder</h1>
+       <h1 className="title">PokéFinder</h1>
+<p className="subtitle">Discover and explore your favorite Pokémon</p>
         <Home/>
       </div>
     </>
