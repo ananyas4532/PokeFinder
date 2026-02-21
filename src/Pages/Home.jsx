@@ -3,6 +3,7 @@ import PokemonCard from "../Components/PokemonCard";
 
 function Home() {
     const [pokemonList, setPokemonList] = useState([]);
+    const [selectedPokemon, setSeletedPokemon]= useState(null);
 
     useEffect(() => {
         async function fetchPokemon() {
@@ -30,8 +31,16 @@ function Home() {
                 <PokemonCard
                     key={pokemon.id}
                     pokemon={pokemon}
+                    onClick = {()=> setSeletedPokemon(pokemon)}
                 />
             ))}
+            {selectedPokemon && (
+                <PokemonModal
+                pokemon={setSeletedPokemon}
+                onClose={()=>
+                    setSelectedPokemon(null)}/>
+                
+            )}
         </div>
     );
 }
