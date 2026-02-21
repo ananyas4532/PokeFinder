@@ -9,13 +9,7 @@ function PokemonCard({ pokemon }) {
       <h2>{pokemon.name.toUpperCase()}</h2>
       <p>ID: {pokemon.id}</p>
 
-      <div className="types">
-        {pokemon.types.map((typeInfo) => (
-          <span key={typeInfo.type.name}>
-            {typeInfo.type.name}
-          </span>
-        ))}
-      </div>
+     
     </div>
   );
 }
