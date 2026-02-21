@@ -3,47 +3,45 @@ import PokemonCard from "../Components/PokemonCard";
 import PokemonModal from "../Components/PokemonModal";
 
 function Home() {
-    const [pokemonList, setPokemonList] = useState([]);
-    const [selectedPokemon, setSeletedPokemon]= useState(null);
+  const [pokemonList, setPokemonList] = useState([]);
+  const [selectedPokemon, setSelectedPokemon] = useState(null); // fixed typo
 
-    useEffect(() => {
-        async function fetchPokemon() {
-            const res = await fetch(
-                "https://pokeapi.co/api/v2/pokemon?limit=50"
-            );
-            const data = await res.json();
+  useEffect(() => {
+    async function fetchPokemon() {
+      const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=50");
+      const data = await res.json();
 
-            const detailedData = await Promise.all(
-                data.results.map(async (pokemon) => {
-                    const response = await fetch(pokemon.url);
-                    return response.json();
-                })
-            );
+      const detailedData = await Promise.all(
+        data.results.map(async (pokemon) => {
+          const response = await fetch(pokemon.url);
+          return response.json();
+        })
+      );
 
-            setPokemonList(detailedData);
-        }
+      setPokemonList(detailedData);
+    }
 
-        fetchPokemon();
-    }, []);
+    fetchPokemon();
+  }, []);
 
-    return (
-        <div className="container">
-            {pokemonList.map((pokemon) => (
-                <PokemonCard
-                    key={pokemon.id}
-                    pokemon={pokemon}
-                    onClick = {()=> setSeletedPokemon(pokemon)}
-                />
-            ))}
-            {selectedPokemon && (
-                <PokemonModal
-                pokemon={setSeletedPokemon}
-                onClose={()=>
-                    setSelectedPokemon(null)}/>
-                
-            )}
-        </div>
-    );
+  return (
+    <div className="container">
+      {pokemonList.map((pokemon) => (
+        <PokemonCard
+          key={pokemon.id}
+          pokemon={pokemon}
+          onClick={() => setSelectedPokemon(pokemon)} // fixed typo
+        />
+      ))}
+
+      {selectedPokemon && (
+        <PokemonModal
+          pokemon={selectedPokemon} // fixed
+          onClose={() => setSelectedPokemon(null)}
+        />
+      )}
+    </div>
+  );
 }
 
 export default Home;
